@@ -1,0 +1,27 @@
+{
+  "name": "millon15/weather",
+  "license": "MIT",
+  "description": "My first Composer project",
+  "authors": [
+    {
+      "name": "Vitas Brazas",
+      "email": "vbrazas@student.unit.ua"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+    "php": ">=7.1.0",
+    "tcdent/php-restclient": "^0.1"
+  },
+  "autoload": {
+    "psr-0": {
+      "Weather": "src/"
+    }
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://asset-packagist.org"
+    }
+  ]
+}

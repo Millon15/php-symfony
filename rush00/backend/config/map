@@ -1,0 +1,17 @@
+POST /create-user
+RequestBody: userName
+Response: id
+
+GET /saved-games
+Response: [{userName: string, userId: string, createdAt: timestamp}]
+
+GET /user-progress
+Request body: userId
+Response: {movies: [{poster: someUrl, name: string, isDefeated: boolean}]}
+
+GET /fight-condinions
+Request: userId
+Response: {userInfo: {hp: float, damage: int}, enemy: {id: string, hp: float, damage: int, poster: some Url}}
+
+POST /game-over
+Request: {userId: string, movieId: string}

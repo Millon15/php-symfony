@@ -1,0 +1,28 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+
+create_user:
+  path:       /create-user
+  controller: App\Controller\UserController::createUser
+  methods:    POST
+
+saved_games:
+  path:       /saved-games
+  controller: App\Controller\UserController::savedGames
+  methods:    GET
+
+user_progress:
+  path:       /user-progress
+  controller: App\Controller\UserController::userProgress
+  methods:    GET
+
+fight_condinions:
+  path:       /fight-condinions
+  controller: App\Controller\UserController::fightCondinions
+  methods:    GET
+
+game_over:
+  path:       /game-over
+  controller: App\Controller\UserController::gameOver
+  methods:    POST

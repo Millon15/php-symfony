@@ -1,0 +1,16 @@
+{
+  "name": "me/my-awesom-proj",
+  "minimum-stability": "stable",
+  "require": {
+    "php": ">=7.1.0",
+    "monolog/monolog": ">1.19 <2.0"
+  },
+  "require-dev": {
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://asset-packagist.org"
+    }
+  ]
+}
