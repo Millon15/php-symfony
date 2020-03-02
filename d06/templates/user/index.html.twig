@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello SecurityController!{% endblock %}
+
+{% block body %}
+        <h1>Hello {{ controller_name }}! ✅</h1>
+
+        This friendly message is coming from:
+        <ul>
+            <li>Your controller at <code><a href="{{ '/Users/vbrazas/projects/php-symfony/d06/src/Controller/SecurityController.php'|file_link(0) }}">src/Controller/SecurityController.php</a></code></li>
+            <li>Your template at <code><a href="{{ '/Users/vbrazas/projects/php-symfony/d06/templates/security/index.html.twig'|file_link(0) }}">templates/security/index.html.twig</a></code></li>
+        </ul>
+
+        <a href="{{ path('login') }}"><button id="login">Whant to login?</button></a>
+        <a href="{{ path('register') }}"><button id="login">Or register?</button></a>
+{% endblock %}

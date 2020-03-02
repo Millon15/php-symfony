@@ -1,0 +1,14 @@
+security_index:
+    path:       /
+    controller: App\Controller\UserController::index
+    methods:    GET
+
+login:
+    path:       /login
+    controller: App\Controller\UserController::login
+    methods:    GET|POST
+
+register:
+    path:       /register
+    controller: App\Controller\UserController::register
+    methods:    GET|POST
