@@ -12,12 +12,14 @@ class TemplateEngine
      * @param $fileName
      * @param $templateName
      * @param $parameters
+     *
+     * @throws \RuntimeException
      */
-    public function createFile($fileName, $templateName, $parameters): void
+    public function createFile(string $fileName, string $templateName, array $parameters): void
     {
         $template = file_get_contents($templateName);
         if ($template === false) {
-            return;
+            throw new \RuntimeException("Can't get contents from file with name: $templateName");
         }
 
         preg_match_all('/\{(.*)\}/', $template, $matches);
@@ -30,6 +32,8 @@ class TemplateEngine
         }
         $template = str_replace($strs_to_replace, $replacements_strs, $template);
 
-        file_put_contents($fileName, $template);
+        if (file_put_contents($fileName, $template) === false) {
+            throw new \RuntimeException("Can't put contents into file with name: $fileName");
+        }
     }
 }

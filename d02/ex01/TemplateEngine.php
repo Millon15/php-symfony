@@ -14,13 +14,14 @@ class TemplateEngine
      */
     public function createFile($fileName, Text $text): void
     {
-        $to_return = '<!DOCTYPE html><html lang="en"><head><title>What?</title></head><body>';
+        $template = '<!DOCTYPE html><html lang="en"><head><title>What?</title></head><body>';
         ob_start();
         $text->printStrings();
-        $to_return .= ob_get_contents();
-        ob_end_clean();
-        $to_return .= '</body></html>';
+        $template .= ob_get_clean();
+        $template .= '</body></html>';
 
-        file_put_contents($fileName, $to_return);
+        if (file_put_contents($fileName, $template) === false) {
+            throw new \RuntimeException("Can't put contents into file with name: $fileName");
+        }
     }
 }

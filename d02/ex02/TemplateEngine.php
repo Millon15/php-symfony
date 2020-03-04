@@ -8,28 +8,41 @@ namespace d02\ex02;
  */
 class TemplateEngine
 {
+    public static $templateVars = [
+        'nom' => 'name',
+        'prix' => 'price',
+        'resistance' => 'resistence',
+        'description' => 'description',
+        'commentaire' => 'comment',
+    ];
+
     /**
-     * @param $fileName
-     * @param $templateName
-     * @param $parameters
+     * @param HotBeverage $text
+     *
+     * @throws \ReflectionException
      */
-    public function createFile($fileName, $templateName, $parameters): void
+    public function createFile(HotBeverage $text): void
     {
+        $reflection = new \ReflectionClass($text);
+        $templateName = 'template.html';
+        $fileName = $reflection->getShortName();
+
         $template = file_get_contents($templateName);
         if ($template === false) {
-            return;
+            throw new \RuntimeException("Can't get contents from file with name: $templateName");
         }
 
         preg_match_all('/\{(.*)\}/', $template, $matches);
-
-        $strs_to_replace = [];
-        $replacements_strs = [];
-        foreach ($matches[0] as $i => $match) {
-            $strs_to_replace[] = $matches[0][$i];
-            $replacements_strs[] = $parameters[$matches[1][$i]] ?? '';
+        $stringsToReplace = $matches[0];
+        foreach ($matches[1] as &$match) {
+            $match = 'get' . ucfirst(self::$templateVars[$match]);
+            $match = $text->$match();
         }
-        $template = str_replace($strs_to_replace, $replacements_strs, $template);
-
-        file_put_contents($fileName, $template);
+        unset($match);
+        $replacements= $matches[1];
+        $template = str_replace($stringsToReplace, $replacements, $template);
+        if (file_put_contents($fileName, $template) === false) {
+            throw new \RuntimeException("Can't put contents into file with name: $fileName");
+        }
     }
 }

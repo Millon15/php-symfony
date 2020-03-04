@@ -17,19 +17,27 @@ abstract class HotBeverage
     /** @var string */
     protected $resistence;
 
-    /** @var string */
-    protected $description;
-
-    /** @var string */
-    protected $comment;
+    /**
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->name;
+    }
 
     /**
-     * @param $property
-     *
-     * @return mixed
+     * @return string
      */
-    public function __get($property)
+    public function getPrice(): string
     {
-        return $this->$property ?? null;
+        return $this->price;
+    }
+
+    /**
+     * @return string
+     */
+    public function getResistence(): string
+    {
+        return $this->resistence;
     }
 }

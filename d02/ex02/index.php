@@ -1,17 +1,16 @@
 <?php
+/** @noinspection PhpUnhandledExceptionInspection */
 declare(strict_types=1);
 
 include_once __DIR__ . '/TemplateEngine.php';
-include_once __DIR__ . '/Text.php';
+include_once __DIR__ . '/HotBeverage.php';
+include_once __DIR__ . '/Tea.php';
+include_once __DIR__ . '/Cofee.php';
 
-use d02\ex01\TemplateEngine;
-use d02\ex01\Text;
+use d02\ex02\Tea;
+use d02\ex02\Cofee;
+use d02\ex02\HotBeverage;
+use d02\ex02\TemplateEngine;
 
-$text = new Text([
-    'STR1',
-    'STR2',
-]);
-$text->addString('STR3');
-$text->addString('STR4');
-
-(new TemplateEngine())->createFile('render.html', $text);
+(new TemplateEngine())->createFile(new Tea);
+(new TemplateEngine())->createFile(new Cofee);
