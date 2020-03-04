@@ -18,6 +18,3 @@ function array2hash(array $arrays): array
 
     return $hash;
 }
-
-// $array = [['Pierre', '30'], ['Mary', '28']];
-// print_r(array2hash($array));

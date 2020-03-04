@@ -29,6 +29,3 @@ function array2hash_sorted(array $arrays): array
 
     return $hash;
 }
-
-// $array = [['Pierre', '30'], ['Mary', '28'], ['Nelly', '22']];
-// print_r(array2hash_sorted($array));
