@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello Ex03Controller!{% endblock %}
+
+{% block body %}
+    <table>
+        <thead>
+        <tr>
+            <td>Black</td>
+            <td>Blue</td>
+            <td>Red</td>
+            <td>Green</td>
+        </tr>
+        </thead>
+        <tbody>
+        {% set cur_color = 255 %}
+        {% set step = cur_color / number_of_colors %}
+        {% for i in 0..number_of_colors %}
+            <tr>
+                <td style="background-color:rgb({{ cur_color }}, {{ cur_color }}, {{ cur_color }}); width: 80px; height: 40px;"></td>
+                <td style="background-color:rgb({{ cur_color }}, 0, 0); width: 80px; height: 40px;"></td>
+                <td style="background-color:rgb(0, {{ cur_color }}, 0); width: 80px; height: 40px;"></td>
+                <td style="background-color:rgb(0, 0, {{ cur_color }}); width: 80px; height: 40px;"></td>
+            </tr>
+            {% set cur_color = cur_color - step | round %}
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
