@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="pills-new-game-tab" data-toggle="pill" href="#pills-new-game"
+                           role="tab" aria-controls="pills-new-game" aria-selected="true">
+                            Start a New Game
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" id="pills-load-game-tab" data-toggle="pill" href="#pills-load-game"
+                           role="tab" aria-controls="pills-load-game" aria-selected="false">
+                            Load a Game From Save
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="tab-content" id="pills-tab-content">
+                    <div class="tab-pane fade show active" id="pills-new-game" role="tabpanel"
+                         aria-labelledby="pills-new-game-tab">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="form-group mb-3">
+                                    <label for="player-nickname">Please enter a name</label>
+                                    {{ form_start(form, {'action': path('create_player')}) }}
+                                        {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+                                        {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary mt-3'}, 'label': 'create'}) }}
+                                    {{ form_end(form) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="pills-load-game" role="tabpanel"
+                         aria-labelledby="pills-load-game-tab">
+                        <ul class="list-group">
+                            {% for save in saves %}
+                                <li class="list-group-item">
+                                    <a href="{{ path('load_game', {playerName: save.fileName}) }}"
+                                       class="btn btn-light">{{ '%s (%s)'|format(save.fileName, save.mTime|date('d/m/Y H:i:s')) }}
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+{% endblock %}

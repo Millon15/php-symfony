@@ -1,0 +1,150 @@
+{% extends "base.html.twig" %}
+
+
+{% block title %}Map{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="d-flex flex-row justify-content-center">
+            <div class="map">
+                {% for i in range(0, 4) %}
+                    <a href="{{ path('map_move', {mapId: i ~ 0}) }}" class="map-link" id="{{ i }}0link" data-x="{{ i }}"
+                       data-y="0">
+                        <div id="{{ i }}0" class="map-field {{ map[i ~ 0].open ? 'map-open' : 'map-close' }}">
+                            {% if map[i ~ 0].open and map[i ~ 0].moviemon %}
+                                <img alt="moviemon" src="{{ map[i ~ 0].moviemon.Poster }}"
+                                     class="{{ map[i ~ 0].moviemon.defeated ? 'grayscale' : '' }}"
+                                     style="position: absolute; width:30%; height:30%; left: 35%; bottom: 35%; {{ map[i ~ 0].moviemon.level > 9 ? 'box-shadow: 0px 0px 0px 4px rgba(255,0,0,1);' : '' }}"
+                                     data-x="{{ i }}" data-y="0">
+                            {% endif %}
+
+                            {% if map[i ~ 0].position %}
+                                <img alt="player" id="player" src="{{ asset('js/PopcornClip.png') }}"
+                                     style="position: absolute; width:30%; height:30%; left: 35%; bottom: 35%;"
+                                     data-x="{{ i }}" data-y="0">
+                            {% endif %}
+                        </div>
+                    </a>
+
+                    <a href="{{ path('map_move', {mapId: i ~ 1}) }}" class="map-link" id="{{ i }}1link" data-x="{{ i }}"
+                       data-y="1">
+                        <div id="{{ i }}1" class="map-field {{ map[i ~ 1].open ? 'map-open' : 'map-close' }}">
+                            {% if map[i ~ 1].open and map[i ~ 1].moviemon %}
+                                <img alt="moviemon" src="{{ map[i ~ 1].moviemon.Poster }}"
+                                     class="{{ map[i ~ 1].moviemon.defeated ? 'grayscale' : '' }}"
+                                     style="position: absolute; width:30%; height:30%; left: 35%; bottom: 35%; {{ map[i ~ 1].moviemon.level > 9 ? 'box-shadow: 0px 0px 0px 4px rgba(255,0,0,1);' : '' }}"
+                                     data-x="{{ i }}" data-y="0">
+                            {% endif %}
+
+                            {% if map[i ~ 1].position %}
+                                <img alt="player" id="player" src="{{ asset('js/PopcornClip.png') }}"
+                                     style="position: absolute; width:30%; height:30%; left: 35%; bottom: 35%;"
+                                     data-x="{{ i }}" data-y="1">
+                            {% endif %}
+                        </div>
+                    </a>
+
+                    <a href="{{ path('map_move', {mapId: i ~ 2}) }}" class="map-link" id="{{ i }}2link" data-x="{{ i }}"
+                       data-y="2">
+                        <div id="{{ i }}2" class="map-field {{ map[i ~ 2].open ? 'map-open' : 'map-close' }}">
+                            {% if map[i ~ 2].open and map[i ~ 2].moviemon %}
+                                <img alt="moviemon" src="{{ map[i ~ 2].moviemon.Poster }}"
+                                     class="{{ map[i ~ 2].moviemon.defeated ? 'grayscale' : '' }}"
+                                     style="position: absolute; width:30%; height:30%; left: 35%; bottom: 35%; {{ map[i ~ 2].moviemon.level > 9 ? 'box-shadow: 0px 0px 0px 4px rgba(255,0,0,1);' : '' }}"
+                                     data-x="{{ i }}" data-y="0">
+                            {% endif %}
+
+                            {% if map[i ~ 2].position %}
+                                <img alt="player" id="player" src="{{ asset('js/PopcornClip.png') }}"
+                                     style="position: absolute; width:30%; height:30%; left: 35%; bottom: 35%;"
+                                     data-x="{{ i }}" data-y="2">
+                            {% endif %}
+                        </div>
+                    </a>
+
+                    <a href="{{ path('map_move', {mapId: i ~ 3}) }}" class="map-link" id="{{ i }}3link" data-x="{{ i }}"
+                       data-y="3">
+                        <div id="{{ i }}3" class="map-field {{ map[i ~ 3].open ? 'map-open' : 'map-close' }}">
+                            {% if map[i ~ 3].open and map[i ~ 3].moviemon %}
+                                <img alt="moviemon" src="{{ map[i ~ 3].moviemon.Poster }}"
+                                     class="{{ map[i ~ 3].moviemon.defeated ? 'grayscale' : '' }}"
+                                     style="position: absolute; width:30%; height:30%; left: 35%; bottom: 35%; {{ map[i ~ 3].moviemon.level > 9 ? 'box-shadow: 0px 0px 0px 4px rgba(255,0,0,1);' : '' }}"
+                                     data-x="{{ i }}" data-y="0">
+                            {% endif %}
+
+                            {% if map[i ~ 3].position %}
+                                <img alt="player" id="player" src="{{ asset('js/PopcornClip.png') }}"
+                                     style="position: absolute; width:30%; height:30%; left: 35%; bottom: 35%;"
+                                     data-x="{{ i }}" data-y="3">
+                            {% endif %}
+                        </div>
+                    </a>
+
+                    <a href="{{ path('map_move', {mapId: i ~ 4}) }}" class="map-link" id="{{ i }}4link" data-x="{{ i }}"
+                       data-y="4">
+                        <div id="{{ i }}4" class="map-field {{ map[i ~ 4].open ? 'map-open' : 'map-close' }}">
+                            {% if map[i ~ 4].open and map[i ~ 4].moviemon %}
+                                <img alt="moviemon" src="{{ map[i ~ 4].moviemon.Poster }}"
+                                     class="{{ map[i ~ 4].moviemon.defeated ? 'grayscale' : '' }}"
+                                     style="position: absolute; width:30%; height:30%; left: 35%; bottom: 35%; {{ map[i ~ 4].moviemon.level > 9 ? 'box-shadow: 0px 0px 0px 4px rgba(255,0,0,1);' : '' }}"
+                                     data-x="{{ i }}" data-y="0">
+                            {% endif %}
+
+                            {% if map[i ~ 4].position %}
+                                <img alt="player" id="player" src="{{ asset('js/PopcornClip.png') }}"
+                                     style="position: absolute; width:30%; height:30%; left: 35%; bottom: 35%;"
+                                     data-x="{{ i }}" data-y="4">
+                            {% endif %}
+                        </div>
+                    </a>
+                {% endfor %}
+
+            </div>
+        </div>
+
+        <div class="d-flex flex-row justify-content-between mt-5">
+            <a href="{{ path('homepage') }}" class="btn btn-warning">Cancel</a>
+            <a href="{{ path('map_save_game') }}" class="btn btn-primary">Save Game</a>
+        </div>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        .map {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            width: 800px;
+        }
+
+        .map-field {
+            width: 150px;
+            height: 150px;
+            background-color: burlywood;
+            border: 1px solid black;
+            position: relative;
+        }
+
+        .grayscale {
+            -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+            filter: grayscale(100%);
+        }
+
+        .map-lint {
+        }
+
+        .map-open {
+            background-color: #f5d9b5;
+        }
+
+        .map-close {
+            background-color: burlywood;
+        }
+
+    </style>
+{% endblock stylesheets %}
+{% block javascripts %}
+    <script src="{{ asset('js/startPoint.js') }}"></script>
+    <script src="{{ asset('js/moves.js') }}"></script>
+{% endblock %}

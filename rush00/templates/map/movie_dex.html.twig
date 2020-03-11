@@ -1,0 +1,52 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Movie Dex{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="d-flex flex-row flex-wrap justify-content-center">
+            {% for moviemon in movie_dex %}
+                <div class="card mr-3 mb-3" style="width: 300px">
+                    <img src="{{ moviemon.Poster }}" class="card-img-top" alt="{{ moviemon.Title }}"
+                         style="{{ moviemon.defeated ? '-webkit-filter: grayscale(100%); filter: grayscale(100%);' : '' }}">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            {{ moviemon.Title }}
+                            {% if moviemon.defeated %}
+                                <span class="badge badge-pill badge-dark ml-1">Defeated</span>
+                            {% endif %}
+                        </h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ moviemon.Genre }}</h6>
+                        <p class="card-text">{{ moviemon.Plot }}</p>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                {% set badge = 'info' %}
+                                {% if moviemon.level == 1 %}
+                                    {% set badge = 'light' %}
+                                {% elseif moviemon.level > 5 and moviemon.level <= 9 %}
+                                    {% set badge = 'warning' %}
+                                {% elseif moviemon.level > 9 %}
+                                    {% set badge = 'danger' %}
+                                {% endif %}
+                                <span class="badge badge-pill badge-light mr-1">
+                                    Health {{ moviemon.health }}
+                                </span>
+
+                                <span class="badge badge-pill badge-light mr-1">
+                                    Attack {{ moviemon.attack }}
+                                </span>
+
+                                <span class="badge badge-pill badge-{{ badge }}">
+                                    Level {{ moviemon.level }}
+                                </span>
+                            </li>
+                            <li class="list-group-item"><b>Director</b>: {{ moviemon.Director }}</li>
+                            <li class="list-group-item"><b>Actors</b>: {{ moviemon.Actors }}</li>
+                            <li class="list-group-item"><b>Released</b>: {{ moviemon.Released }}</li>
+                        </ul>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

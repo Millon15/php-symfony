@@ -1,0 +1,82 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Fight{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="d-flex flex-row flex-wrap justify-content-between">
+
+            <div class="card mr-3 mb-3" style="width: 300px">
+                <img src="{{ asset("js/PopcornClip.png") }}" class="card-img-top" alt="{{ player.name ~ ' avatar' }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ player.name }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Your player</h6>
+                    <p class="card-text">{{ player.name }} - an American film producer and co-founder of Metro-Goldwyn-Mayer studios (MGM) in 1924. Under {{ player.name }}'s management, MGM became the film industry's most prestigious movie studio, accumulating the largest concentration of leading writers, directors and stars in Hollywood.</p>
+                </div>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        {% set badge = 'info' %}
+                        {% if player.level == 1 %}
+                            {% set badge = 'light' %}
+                        {% elseif player.level > 5 and player.level <= 9 %}
+                            {% set badge = 'warning' %}
+                        {% elseif player.level > 9 %}
+                            {% set badge = 'danger' %}
+                        {% endif %}
+                        <span class="badge badge-pill badge-light mr-1">
+                            Health {{ player.health }}
+                        </span>
+                        <span class="badge badge-pill badge-light mr-1">
+                            Attack {{ player.attack }}
+                        </span>
+                        <span class="badge badge-pill badge-{{ badge }}">
+                            Level {{ player.level }}
+                        </span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="card mb-3" style="width: 300px">
+                <img src="{{ moviemon.Poster }}" class="card-img-top" alt="{{ moviemon.Title }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ moviemon.Title }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{ moviemon.Genre }}</h6>
+                    <p class="card-text">{{ moviemon.Plot }}</p>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><b>Director</b>: {{ moviemon.Director }}</li>
+                        <li class="list-group-item"><b>Actors</b>: {{ moviemon.Actors }}</li>
+                        <li class="list-group-item"><b>Released</b>: {{ moviemon.Released }}</li>
+                    </ul>
+                </div>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        {% set badge = 'info' %}
+                        {% if moviemon.level == 1 %}
+                            {% set badge = 'light' %}
+                        {% elseif moviemon.level > 5 and moviemon.level <= 9 %}
+                            {% set badge = 'warning' %}
+                        {% elseif moviemon.level > 9 %}
+                            {% set badge = 'danger' %}
+                        {% endif %}
+                        <span class="badge badge-pill badge-light mr-1">
+                                Health {{ moviemon.health }}
+                            </span>
+                        <span class="badge badge-pill badge-light mr-1">
+                                Attack {{ moviemon.attack }}
+                            </span>
+
+                        <span class="badge badge-pill badge-{{ badge }}">
+                                Level {{ moviemon.level }}
+                            </span>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="d-flex flex-row justify-content-between">
+            <a href="{{ path('map_index') }}" class="btn btn-secondary">Get me Back</a>
+            <a href="{{ path('map_fight_attack', {mapId: map_id}) }}" class="btn btn-success">Attack</a>
+        </div>
+    </div>
+{% endblock %}
